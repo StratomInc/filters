@@ -29,7 +29,7 @@
 
 #ifndef FILTERS__FILTER_CHAIN_HPP_
 #define FILTERS__FILTER_CHAIN_HPP_
-
+#pragma once
 #include <algorithm>
 #include <sstream>
 #include <string>
@@ -59,7 +59,7 @@ struct FoundFilter
 /**
  * \brief Read params and figure out what filters to load
  */
-bool
+static inline bool
 load_chain_config(
   const std::string & param_prefix,
   const rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr & node_logger,

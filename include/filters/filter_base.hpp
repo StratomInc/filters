@@ -33,7 +33,7 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
-
+#pragma once
 #include "rcl_interfaces/msg/parameter_descriptor.hpp"
 #include "rcl_interfaces/msg/parameter_type.hpp"
 #include "rclcpp/rclcpp.hpp"
@@ -44,7 +44,7 @@ namespace filters
 namespace impl
 {
 
-std::string normalize_param_prefix(std::string prefix)
+static inline std::string normalize_param_prefix(std::string prefix)
 {
   if (!prefix.empty()) {
     if ('.' != prefix.back()) {
