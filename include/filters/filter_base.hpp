@@ -33,21 +33,20 @@
 #include <string>
 #include <typeinfo>
 #include <vector>
-#pragma once
 #include "rcl_interfaces/msg/parameter_descriptor.hpp"
 #include "rcl_interfaces/msg/parameter_type.hpp"
 #include "rclcpp/rclcpp.hpp"
 
 namespace filters
 {
-
 namespace impl
 {
-
 static inline std::string normalize_param_prefix(std::string prefix)
 {
-  if (!prefix.empty()) {
-    if ('.' != prefix.back()) {
+  if (!prefix.empty())
+  {
+    if ('.' != prefix.back())
+    {
       prefix += '.';
     }
   }
@@ -59,15 +58,16 @@ static inline std::string normalize_param_prefix(std::string prefix)
 /**
  * \brief A Base filter class to provide a standard interface for all filters
  */
-template<typename T>
+template <typename T>
 class FilterBase
 {
 public:
   /**
    * \brief Default constructor used by Filter Factories
    */
-  FilterBase()
-  : configured_(false) {}
+  FilterBase() : configured_(false)
+  {
+  }
 
   /**
    * \brief Virtual Destructor
@@ -79,19 +79,17 @@ public:
    * \param The parameter from which to read the configuration
    * \param node_handle The optional node handle, useful if operating in a different namespace.
    */
-  bool configure(
-    const std::string & param_prefix,
-    const std::string & filter_name,
-    const rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr & node_logger,
-    const rclcpp::node_interfaces::NodeParametersInterface::SharedPtr & node_params)
+  bool configure(const std::string& param_prefix, const std::string& filter_name,
+                 const rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr& node_logger,
+                 const rclcpp::node_interfaces::NodeParametersInterface::SharedPtr& node_params)
   {
-    if (configured_) {
-      RCLCPP_WARN(
-        node_logger->get_logger(),
-        "Filter %s already being reconfigured",
-        filter_name_.c_str());
+    if (configured_)
+    {
+      RCLCPP_WARN(node_logger->get_logger(), "Filter %s already being reconfigured",
+                  filter_name_.c_str());
     }
-    if (!node_params) {
+    if (!node_params)
+    {
       throw std::runtime_error("Need a parameters interface to function.");
     }
 
@@ -112,20 +110,24 @@ public:
    * \param data_in A reference to the data to be input to the filter
    * \param data_out A reference to the data output location
    */
-  virtual bool update(const T & data_in, T & data_out) = 0;
+  virtual bool update(const T& data_in, T& data_out) = 0;
 
   /**
    * \brief Get the name of the filter as a string
    */
-  inline const std::string & getName() {return filter_name_;}
+  inline const std::string& getName()
+  {
+    return filter_name_;
+  }
 
 private:
-  template<typename PT>
-  bool getParamImpl(const std::string & name, const uint8_t type, PT default_value, PT & value_out)
+  template <typename PT>
+  bool getParamImpl(const std::string& name, const uint8_t type, PT default_value, PT& value_out)
   {
     std::string param_name = param_prefix_ + name;
 
-    if (!params_interface_->has_parameter(param_name)) {
+    if (!params_interface_->has_parameter(param_name))
+    {
       // Declare parameter
       rclcpp::ParameterValue default_parameter_value(default_value);
       rcl_interfaces::msg::ParameterDescriptor desc;
@@ -133,7 +135,8 @@ private:
       desc.type = type;
       desc.read_only = true;
 
-      if (name.empty()) {
+      if (name.empty())
+      {
         throw std::runtime_error("Parameter must have a name");
       }
 
@@ -157,10 +160,10 @@ protected:
    * \param name The name of the parameter
    * \param value The string to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, std::string & value)
+  bool getParam(const std::string& name, std::string& value)
   {
-    return getParamImpl(
-      name, rcl_interfaces::msg::ParameterType::PARAMETER_STRING, std::string(), value);
+    return getParamImpl(name, rcl_interfaces::msg::ParameterType::PARAMETER_STRING, std::string(),
+                        value);
   }
 
   /**
@@ -168,7 +171,7 @@ protected:
    * \param name The name of the parameter
    * \param value The boolean to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, bool & value)
+  bool getParam(const std::string& name, bool& value)
   {
     return getParamImpl(name, rcl_interfaces::msg::ParameterType::PARAMETER_BOOL, false, value);
   }
@@ -178,7 +181,7 @@ protected:
    * \param name The name of the parameter
    * \param value The double to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, double & value)
+  bool getParam(const std::string& name, double& value)
   {
     return getParamImpl(name, rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE, 0.0, value);
   }
@@ -188,7 +191,7 @@ protected:
    * \param name The name of the parameter
    * \param value The int to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, int & value)
+  bool getParam(const std::string& name, int& value)
   {
     return getParamImpl(name, rcl_interfaces::msg::ParameterType::PARAMETER_INTEGER, 0, value);
   }
@@ -198,13 +201,15 @@ protected:
    * \param name The name of the parameter
    * \param value The int to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, unsigned int & value)
+  bool getParam(const std::string& name, unsigned int& value)
   {
     int signed_value;
-    if (!getParam(name, signed_value)) {
+    if (!getParam(name, signed_value))
+    {
       return false;
     }
-    if (signed_value < 0) {
+    if (signed_value < 0)
+    {
       return false;
     }
     value = signed_value;
@@ -216,13 +221,15 @@ protected:
    * \param name The name of the parameter
    * \param value The int to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, size_t & value)
+  bool getParam(const std::string& name, size_t& value)
   {
     int signed_value;
-    if (!getParam(name, signed_value)) {
+    if (!getParam(name, signed_value))
+    {
       return false;
     }
-    if (signed_value < 0) {
+    if (signed_value < 0)
+    {
       return false;
     }
     value = signed_value;
@@ -234,10 +241,9 @@ protected:
    * \param name The name of the parameter
    * \param value The std::vector<double> to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, std::vector<double> & value)
+  bool getParam(const std::string& name, std::vector<double>& value)
   {
-    return getParamImpl(
-      name, rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE_ARRAY, {}, value);
+    return getParamImpl(name, rcl_interfaces::msg::ParameterType::PARAMETER_DOUBLE_ARRAY, {}, value);
   }
 
   /**
@@ -245,10 +251,9 @@ protected:
    * \param name The name of the parameter
    * \param value The std::vector<sgring> to set with the value
    * \return Whether or not the parameter of name/type was set */
-  bool getParam(const std::string & name, std::vector<std::string> & value)
+  bool getParam(const std::string& name, std::vector<std::string>& value)
   {
-    return getParamImpl(
-      name, rcl_interfaces::msg::ParameterType::PARAMETER_STRING_ARRAY, {}, value);
+    return getParamImpl(name, rcl_interfaces::msg::ParameterType::PARAMETER_STRING_ARRAY, {}, value);
   }
 
   /// The name of the filter
@@ -262,13 +267,11 @@ protected:
   rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr logging_interface_;
 };
 
-
-template<typename T>
+template <typename T>
 class MultiChannelFilterBase : public FilterBase<T>
 {
 public:
-  MultiChannelFilterBase()
-  : number_of_channels_(0)
+  MultiChannelFilterBase() : number_of_channels_(0)
   {
   }
 
@@ -283,12 +286,10 @@ public:
    * \param The parameter from which to read the configuration
    * \param node_handle The optional node handle, useful if operating in a different namespace.
    */
-  bool configure(
-    size_t number_of_channels,
-    const std::string & param_prefix,
-    const std::string & filter_name,
-    const rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr & node_logger,
-    const rclcpp::node_interfaces::NodeParametersInterface::SharedPtr & node_params)
+  bool configure(size_t number_of_channels, const std::string& param_prefix,
+                 const std::string& filter_name,
+                 const rclcpp::node_interfaces::NodeLoggingInterface::SharedPtr& node_logger,
+                 const rclcpp::node_interfaces::NodeParametersInterface::SharedPtr& node_params)
   {
     number_of_channels_ = number_of_channels;
 
@@ -301,13 +302,12 @@ public:
    * \param data_out A reference to the data output location
    * This funciton must be implemented in the derived class.
    */
-  virtual bool update(const std::vector<T> & data_in, std::vector<T> & data_out) = 0;
+  virtual bool update(const std::vector<T>& data_in, std::vector<T>& data_out) = 0;
 
-  virtual bool update(const T & /*data_in*/, T & /*data_out*/)
+  virtual bool update(const T& /*data_in*/, T& /*data_out*/)
   {
-    RCLCPP_ERROR(
-      this->logging_interface_->get_logger(),
-      "THIS IS A MULTI FILTER DON'T CALL SINGLE FORM OF UPDATE");
+    RCLCPP_ERROR(this->logging_interface_->get_logger(),
+                 "THIS IS A MULTI FILTER DON'T CALL SINGLE FORM OF UPDATE");
     return false;
   }
 
