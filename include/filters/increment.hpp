@@ -27,8 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__INCREMENT_HPP_
-#define FILTERS__INCREMENT_HPP_
+#pragma once
 
 #include <vector>
 
@@ -156,5 +155,3 @@ bool MultiChannelIncrementFilter<T>::update(
 }
 
 }  // namespace filters
-
-#endif  // FILTERS__INCREMENT_HPP_

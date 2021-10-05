@@ -27,8 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__MEDIAN_HPP_
-#define FILTERS__MEDIAN_HPP_
+#pragma once
 
 #include <memory>
 #include <utility>
@@ -257,5 +256,3 @@ bool MultiChannelMedianFilter<T>::update(const std::vector<T> & data_in, std::ve
 }
 
 }  // namespace filters
-
-#endif  // FILTERS__MEDIAN_HPP_

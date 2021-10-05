@@ -29,8 +29,7 @@
 
 /// \author Tully Foote tfoote@willowgarage.com
 
-#ifndef FILTERS__REALTIME_CIRCULAR_BUFFER_HPP_
-#define FILTERS__REALTIME_CIRCULAR_BUFFER_HPP_
+#pragma once
 
 #include <algorithm>
 #include <vector>
@@ -108,5 +107,3 @@ private:
 };
 
 }  // namespace filters
-
-#endif  // FILTERS__REALTIME_CIRCULAR_BUFFER_HPP_

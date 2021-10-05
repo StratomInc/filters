@@ -27,8 +27,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__FILTER_CHAIN_HPP_
-#define FILTERS__FILTER_CHAIN_HPP_
+#pragma once
+
 #include <algorithm>
 #include <sstream>
 #include <string>
@@ -476,5 +476,3 @@ private:
 };
 
 }  // namespace filters
-
-#endif  // FILTERS__FILTER_CHAIN_HPP_

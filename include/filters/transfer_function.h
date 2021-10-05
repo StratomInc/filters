@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__TRANSFER_FUNCTION_H_
-#define FILTERS__TRANSFER_FUNCTION_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/transfer_function.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/transfer_function.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./transfer_function.hpp"
-
-#endif  // FILTERS__TRANSFER_FUNCTION_H_
+}

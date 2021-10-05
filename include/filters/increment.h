@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__INCREMENT_H_
-#define FILTERS__INCREMENT_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/increment.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/increment.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./increment.hpp"
-
-#endif  // FILTERS__INCREMENT_H_
+}

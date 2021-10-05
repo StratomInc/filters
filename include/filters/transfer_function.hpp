@@ -29,8 +29,7 @@
 
 // Original version: Melonee Wise <mwise@willowgarage.com>
 
-#ifndef FILTERS__TRANSFER_FUNCTION_HPP_
-#define FILTERS__TRANSFER_FUNCTION_HPP_
+#pragma once
 
 #include <stdint.h>
 #include <math.h>
@@ -334,5 +333,3 @@ bool MultiChannelTransferFunctionFilter<T>::update(
 }
 
 }  // namespace filters
-
-#endif  // FILTERS__TRANSFER_FUNCTION_HPP_

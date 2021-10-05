@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__MEAN_H_
-#define FILTERS__MEAN_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/mean.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/mean.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./mean.hpp"
-
-#endif  // FILTERS__MEAN_H_
+}

@@ -27,8 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__PARAM_TEST_HPP_
-#define FILTERS__PARAM_TEST_HPP_
+#pragma once
 
 #include "filters/filter_base.hpp"
 
@@ -86,5 +85,3 @@ bool ParamTest<T>::update(const T & /*data_in*/, T & data_out)
 }
 
 }  // namespace filters
-
-#endif  // FILTERS__PARAM_TEST_HPP_

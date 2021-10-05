@@ -27,8 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__FILTER_BASE_HPP_
-#define FILTERS__FILTER_BASE_HPP_
+#pragma once
 
 #include <string>
 #include <typeinfo>
@@ -317,5 +316,3 @@ protected:
 };
 
 }  // namespace filters
-
-#endif  // FILTERS__FILTER_BASE_HPP_

@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__PARAM_TEST_H_
-#define FILTERS__PARAM_TEST_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/param_test.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/param_test.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./param_test.hpp"
-
-#endif  // FILTERS__PARAM_TEST_H_
+}

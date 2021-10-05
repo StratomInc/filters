@@ -27,8 +27,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__MEAN_HPP_
-#define FILTERS__MEAN_HPP_
+#pragma once
 
 #include <memory>
 #include <vector>
@@ -221,5 +220,3 @@ bool MultiChannelMeanFilter<T>::update(const std::vector<T> & data_in, std::vect
 }
 
 }  // namespace filters
-
-#endif  // FILTERS__MEAN_HPP_

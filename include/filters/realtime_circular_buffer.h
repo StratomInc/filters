@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__REALTIME_CIRCULAR_BUFFER_H_
-#define FILTERS__REALTIME_CIRCULAR_BUFFER_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/realtime_circular_buffer.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/realtime_circular_buffer.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./realtime_circular_buffer.hpp"
-
-#endif  // FILTERS__REALTIME_CIRCULAR_BUFFER_H_
+}

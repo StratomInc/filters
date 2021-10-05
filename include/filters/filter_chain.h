@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__FILTER_CHAIN_H_
-#define FILTERS__FILTER_CHAIN_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/filter_chain.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/filter_chain.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./filter_chain.hpp"
-
-#endif  // FILTERS__FILTER_CHAIN_H_
+}

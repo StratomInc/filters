@@ -29,8 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FILTERS__MEDIAN_H_
-#define FILTERS__MEDIAN_H_
+#pragma once
 
 #ifdef _MSC_VER
 #pragma message("Including header <filters/median.h> is deprecated,")
@@ -41,6 +40,7 @@
 include <filters/median.hpp> instead.
 #endif
 
+extern "C"
+{
 #include "./median.hpp"
-
-#endif  // FILTERS__MEDIAN_H_
+}
